@@ -194,6 +194,7 @@ function resetGame()
     {
         var inputName1 = document.querySelector('.p1').value;
         var inputName2 = document.querySelector('.p2').value;
+        
         OptionsOverlay.style.display = 'none';
         P1score.innerHTML = `${inputName1} <br /> ${player1Score}`
         P2score.innerHTML = `${inputName2} <br /> ${player2Score}`
