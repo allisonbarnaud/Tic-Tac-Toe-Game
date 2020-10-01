@@ -1,20 +1,179 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Ubuntu', sans-serif;
+}
+
 div {
     border: 1px solid black;
     height: 100px;
     width: 100px;
-    margin: 1px;
-
+    background-color: white;
+    border-radius: 5px;
 }
 
-main {
-    display: grid;
-    grid-template-columns: 104px 104px 104px;
-}
+
+
+
+
+
 
 .player1 {
-    background-color: blue;
+    background-color: #799FCB;
 }
 
 .player2 {
-    background-color: red;
+    background-color: #F9665E;
+}
+
+aside {
+    text-align: center;
+}
+
+div:hover {
+    background-color: #B1B6B9;
+}
+
+.player1:hover {
+    background-color: #799FCB;
+}
+
+.player2:hover {
+    background-color: #F9665E;
+}
+
+.background {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 800px;
+    height: 350px;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+#container {
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+    grid-gap: 2px;
+    justify-content: center;
+    align-content: center;
+    padding-top: 0px;
+}
+
+h1 {
+    color: white;
+    margin: 0;
+    padding-left: 15px;
+    background-color: black;
+    font-size: 22px;
+}
+
+h2 {
+    color: darkred;
+    margin: 0;
+    padding-left: 15px;
+    background-color: black;
+    font-size: 18px;
+}
+
+h3 {
+    color: #799FCB;
+    font-size: 22px;
+    margin: 5px 0px 5px 0px;
+    text-align: center;
+    margin-top: 170px;
+}
+
+.reset {
+    position: relative;
+    font-size: 20px;
+    z-index:13;
+    color: white;
+}
+
+.Options {
+    margin-left: 60px;
+    position: relative;
+    font-size: 20px;
+    z-index:11;
+    color: white;
+}
+
+body {
+    margin: 0;
+    background-image: url('landscape.png');
+    background-repeat: none;
+    background-size: 150%;
+}
+
+p {
+    text-align: center;
+    color: white;
+    z-index: -1;
+    font-size: 20px;
+    margin-top: 25px;
+}
+
+.box {
+    background-color: black;
+    position: absolute;
+    width: 800px;
+    height: 450px;
+    opacity: 0.5;
+    top: 48%; 
+    left: 50%; 
+    z-index: -2;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+}
+
+.box2 {
+    background-color: black;
+    position: absolute;
+    width: 800px;
+    height: 450px;
+    color: white;
+    font-size: 25px;
+    opacity: 0.8;
+    top: 48%; 
+    left: 50%; 
+    z-index: 10;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    display: none;
+    text-align: center;
+    padding-top: 210px;
+}
+
+.box3 {
+    background-color: black;
+    position: absolute;
+    width: 800px;
+    height: 450px;
+    color: white;
+    font-size: 25px;
+    opacity: 0.8;
+    top: 48%; 
+    left: 50%; 
+    z-index: 12;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    display: none;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.P1score {
+    color: #799FCB;
+}
+
+.P2score {
+    color: #F9665E;
+}
+
+.player1Name {
+    font-size: 18px;
+}
+
+.player2Name {
+    font-size: 18px;
 }

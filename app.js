@@ -28,9 +28,14 @@ var gridTracker = ['', '', '', '', '', '', '', '', ''];
 //DOM selectors
 
 var boxes = document.querySelectorAll('div');
-var turnDisplay = document.querySelector('h2');
+var turnDisplay = document.querySelector('h3');
 var resetBtn = document.querySelector('.reset');
-var restartBtn = document.querySelector('.reset');
+var winOverlay = document.querySelector('.box2');
+var OptionsOverlay = document.querySelector('.box3');
+var P1score = document.querySelector('.P1score');
+var P2score = document.querySelector('.P2score');
+var optionsBtn = document.querySelector('.Options');
+
 
 //player is between 1 and 2: 1 is o, 2 is x
 
@@ -46,8 +51,11 @@ var checkWin = [];
 //game states
 
 var playerWon = false;
+var player1Won = false;
+var player2Won = false;
 var playerDraw = false;
 var playerReset = false;
+var options = false;
 
 var player1Score = 0;
 var player2Score = 0;
@@ -62,20 +70,19 @@ function handleClick(event) {
         {
             event.target.classList.add('player1')
             turnDisplay.textContent = 'Turn: player 2'
+            turnDisplay.style.color = '#F9665E'
             player++
             pushGridValues(event);
-            
         }
         else if (player == 2)
         {
             event.target.classList.add('player2')
             turnDisplay.textContent = 'Turn: player 1'
+            turnDisplay.style.color = '#799FCB'
             player--
             pushGridValues(event);
-        }
-        
-    }
-    
+        }   
+    } 
 }
 
 function pushGridValues(event) {
@@ -88,9 +95,11 @@ for (var i = 0; i < boxes.length; i++)
 {
     boxes[i].addEventListener('click', handleClick)
     boxes[i].addEventListener('click', winValuesAdder)
+    boxes[i].addEventListener('click', overlay)
 }
 
 resetBtn.addEventListener('click', resetGame)
+optionsBtn.addEventListener('click', Options)
 
 //pushes index values of player1's clicked boxes
 //issue with repeating values, fixed by filtering repeated values
@@ -131,14 +140,17 @@ function compareWithWins() {
             {
                 console.log('player1 won!')
                 player1Score ++
-                playerWon = true;
+                player1Won = true;
+                P1score.innerHTML = `Player 1 <br /> ${player1Score}`
             }
             else if (winValuesP2.includes(winStates[j][0]) && winValuesP2.includes(winStates[j][1]) && winValuesP2.includes(winStates[j][2]))
             {
                 console.log('player2 won!')
                 player2Score ++
-                playerWon = true;
+                player2Won = true;
+                P2score.innerHTML = `Player 2 <br /> ${player2Score}`
             }
+            
         }
     }
 }
@@ -154,18 +166,71 @@ function draw() {
     }
 }
 
-//two arrays are not equal??
-
 function resetGame()
 {
-    for (i = 0; i < boxes.length; i++)
-    {
-        boxes[i].className = '';
+    if (options == false)
+    {   
+        
+        for (i = 0; i < boxes.length; i++)
+        {
+            boxes[i].className = '';
+        }
+        winValuesP1 = []
+        winValuesP2 = []
+        gridTracker = ['', '', '', '', '', '', '', '', ''];
+        player = 1;
+        turnDisplay.textContent = 'Turn: player 1'
+        winOverlay.style.display = 'none';
+        player1Won = false;
+        player2Won = false;
+        playerDraw = false;
+        if (playerWon == false)
+        {
+            resetBtn.textContent = 'Reset Game';
+        }
+        turnDisplay.style.color = '#799FCB'
     }
-    winValuesP1 = []
-    winValuesP2 = []
-    gridTracker = ['', '', '', '', '', '', '', '', ''];
-    player = 1;
-    turnDisplay.textContent = 'Turn: player 1'
+    else if (options == true)
+    {
+        var inputName1 = document.querySelector('.p1').value;
+        var inputName2 = document.querySelector('.p2').value;
+        OptionsOverlay.style.display = 'none';
+        P1score.innerHTML = `${inputName1} <br /> ${player1Score}`
+        P2score.innerHTML = `${inputName2} <br /> ${player2Score}`
+        options = false;
+        inputName1 = '';
+        inputName2 = '';
+        resetBtn.textContent = 'Reset Game';
+    }
 }
+
+function overlay() {
+    if (player1Won == true)
+    {
+        winOverlay.style.display = 'block';
+        winOverlay.textContent = `Player 1 Won!`;
+        resetBtn.textContent = 'Play Again';
+    }
+    else if(player2Won == true)
+    {
+        winOverlay.style.display = 'block';
+        winOverlay.textContent = `Player 2 Won!`;
+        resetBtn.textContent = 'Play Again';
+    }
+    else if(playerDraw == true)
+    {
+        winOverlay.style.display = 'block';
+        winOverlay.textContent = `It's a draw!`;
+        resetBtn.textContent = 'Play Again';
+    }
+}
+
+function Options() {
+    options = true;
+    OptionsOverlay.style.display = 'block';
+    resetBtn.textContent = 'Confirm';
+}
+
+
+
 

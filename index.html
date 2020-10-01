@@ -5,23 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <main>
-            <div data-value='0'></div>
-            <div data-value='1'></div>
-            <div data-value='2'></div>
-            <div data-value='3'></div>
-            <div data-value='4'></div>
-            <div data-value='5'></div>
-            <div data-value='6'></div>
-            <div data-value='7'></div>
-            <div data-value='8'></div>
+    <h1>Tic-Tac-Toe</h1>
+    <h2>By Allison A.</h2>
+    <main class='box'></main>
+    <h3>Turn: player 1</h3>
+    <main class='box2'></main>
+    <main class='box3'>Change player Names: <br><br>
+        <span class='player1Name'>Player 1 <input class= 'p1' type="text"></span> <br>
+        <span class='player2Name'>Player 2 <input class= 'p2' type="text"></span>
     </main>
-    <h2>Turn: player 1</h2>
-    <span class='reset'>Reset</span>
-    <span class='restart'>Play Again?</span>
+    <main class='background'>
+        <p class='P1score'>Player 1 <br> 0</p>
+        <main ID='container'>
+                <div data-value='0'></div>
+                <div data-value='1'></div>
+                <div data-value='2'></div>
+                <div data-value='3'></div>
+                <div data-value='4'></div>
+                <div data-value='5'></div>
+                <div data-value='6'></div>
+                <div data-value='7'></div>
+                <div data-value='8'></div>
+        </main>
+        <p class='P2score'>Player 2 <br> 0</p>
+    </main>
+    <aside>
+        <span class='reset'>Reset Game</span>
+        <span class='Options'>Options</span>
+    </aside>
     <script src="app.js"></script>
 </body>
 </html>
