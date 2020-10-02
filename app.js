@@ -35,7 +35,10 @@ var OptionsOverlay = document.querySelector('.box3');
 var P1score = document.querySelector('.P1score');
 var P2score = document.querySelector('.P2score');
 var optionsBtn = document.querySelector('.Options');
-
+var inputName1 = 'Player 1';
+var inputName2 = 'Player 2';
+var winSound = document.getElementById('winSound');
+var clickSound = document.getElementById('clickSound');
 
 //player is between 1 and 2: 1 is o, 2 is x
 
@@ -56,7 +59,7 @@ var player2Won = false;
 var playerDraw = false;
 var playerReset = false;
 var options = false;
-
+var nameChanged = false;
 var player1Score = 0;
 var player2Score = 0;
 
@@ -69,7 +72,7 @@ function handleClick(event) {
         if (player == 1)
         {
             event.target.classList.add('player1')
-            turnDisplay.textContent = 'Turn: player 2'
+            turnDisplay.innerHTML = `Turn: ${inputName2}`
             turnDisplay.style.color = '#F9665E'
             player++
             pushGridValues(event);
@@ -77,7 +80,7 @@ function handleClick(event) {
         else if (player == 2)
         {
             event.target.classList.add('player2')
-            turnDisplay.textContent = 'Turn: player 1'
+            turnDisplay.innerHTML = `Turn: ${inputName1}`
             turnDisplay.style.color = '#799FCB'
             player--
             pushGridValues(event);
@@ -126,7 +129,6 @@ function winValuesAdder()
     }
     compareWithWins()
     draw()
-    
 }
 
 //use functions .include and .every to check all corresponding values of each sub array?
@@ -141,18 +143,22 @@ function compareWithWins() {
                 console.log('player1 won!')
                 player1Score ++
                 player1Won = true;
-                P1score.innerHTML = `Player 1 <br /> ${player1Score}`
+                winSound.volume = 0.2;
+                winSound.play()
+                
             }
             else if (winValuesP2.includes(winStates[j][0]) && winValuesP2.includes(winStates[j][1]) && winValuesP2.includes(winStates[j][2]))
             {
                 console.log('player2 won!')
                 player2Score ++
                 player2Won = true;
-                P2score.innerHTML = `Player 2 <br /> ${player2Score}`
+                winSound.volume = 0.2;
+                winSound.play()
             }
-            
+        
         }
     }
+    scoreUpdater()
 }
 
 function draw() {
@@ -168,9 +174,30 @@ function draw() {
 
 function resetGame()
 {
+
+    turnDisplay.innerHTML = `Turn: ${inputName1}`
+    clickSound.volume = 0.2;
+    clickSound.play()
+    winSound.pause()
+    winSound.currentTime = 0;
+
+    inputName1 = document.querySelector('.p1').value;
+    inputName2 = document.querySelector('.p2').value;
+
+    console.log(inputName1)
+    scoreUpdater()
+    if (player == 1)
+    {
+        turnDisplay.innerHTML = `Turn: ${inputName1}`
+    }
+    else
+    {
+        turnDisplay.innerHTML = `Turn: ${inputName2}`
+    }
+    
+    
     if (options == false)
     {   
-        
         for (i = 0; i < boxes.length; i++)
         {
             boxes[i].className = '';
@@ -179,7 +206,6 @@ function resetGame()
         winValuesP2 = []
         gridTracker = ['', '', '', '', '', '', '', '', ''];
         player = 1;
-        turnDisplay.textContent = 'Turn: player 1'
         winOverlay.style.display = 'none';
         player1Won = false;
         player2Won = false;
@@ -192,15 +218,9 @@ function resetGame()
     }
     else if (options == true)
     {
-        var inputName1 = document.querySelector('.p1').value;
-        var inputName2 = document.querySelector('.p2').value;
-        
+        nameChanged = true;
         OptionsOverlay.style.display = 'none';
-        P1score.innerHTML = `${inputName1} <br /> ${player1Score}`
-        P2score.innerHTML = `${inputName2} <br /> ${player2Score}`
         options = false;
-        inputName1 = '';
-        inputName2 = '';
         resetBtn.textContent = 'Reset Game';
     }
 }
@@ -209,13 +229,13 @@ function overlay() {
     if (player1Won == true)
     {
         winOverlay.style.display = 'block';
-        winOverlay.textContent = `Player 1 Won!`;
+        winOverlay.textContent = `${inputName1} Won!`;
         resetBtn.textContent = 'Play Again';
     }
     else if(player2Won == true)
     {
         winOverlay.style.display = 'block';
-        winOverlay.textContent = `Player 2 Won!`;
+        winOverlay.textContent = `${inputName2} Won!`;
         resetBtn.textContent = 'Play Again';
     }
     else if(playerDraw == true)
@@ -232,6 +252,9 @@ function Options() {
     resetBtn.textContent = 'Confirm';
 }
 
-
-
+function scoreUpdater() {
+    console.log(inputName1)
+    P1score.innerHTML = `${inputName1} <br /> ${player1Score}`
+    P2score.innerHTML = `${inputName2} <br /> ${player2Score}`
+}
 

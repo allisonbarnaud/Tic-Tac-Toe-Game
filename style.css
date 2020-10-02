@@ -92,10 +92,9 @@ h3 {
 }
 
 .reset {
-    /* position: relative; */
     font-size: 20px;
-    z-index:13;
     color: white;
+    cursor: pointer;
 }
 
 .Options {
@@ -104,6 +103,7 @@ h3 {
     font-size: 20px;
     z-index:11;
     color: white;
+    cursor: pointer;
 }
 
 body {
@@ -152,12 +152,13 @@ p {
     opacity: 0.8;
     top: 50%; 
     left: 50%; 
-    z-index: 10;
+    z-index: 1;
     transform: translate(-50%, -50%);
     border-radius: 10px;
     display: none;
     text-align: center;
-    /* padding-top: 210px; */
+    padding-top: 210px;
+    padding-bottom: 210px;
 }
 
 .box3 {
@@ -170,7 +171,7 @@ p {
     opacity: 0.8;
     top: 50%; 
     left: 50%; 
-    z-index: 12;
+    z-index: 2;
     transform: translate(-50%, -50%);
     border-radius: 10px;
     display: none;
@@ -198,5 +199,15 @@ aside {
     position: absolute;
     top: 50%;
     left: 50%;
+    z-index: 10;
     transform: translate(-50%, 720%);
+    
+}
+
+.reset:hover {
+    color: silver;
+}
+
+.Options:hover {
+    color: silver;
 }
