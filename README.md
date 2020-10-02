@@ -1,5 +1,8 @@
 # Tic-Tac-Toe-Game
 
+![Screenshot](tictactoe.png)
+
+
 click here to play: https://allisonbarnaud.github.io/Tic-Tac-Toe-Game/
 
 1. HOW TO PLAY
