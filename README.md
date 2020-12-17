@@ -1,7 +1,6 @@
 # Tic-Tac-Toe-Game
 
-![Screenshot](tictactoe.png)
-
+![alt text](tictactoeimg.png)
 
 click here to play: https://allisonbarnaud.github.io/Tic-Tac-Toe-Game/
 
@@ -68,6 +67,7 @@ The next steps were to add more features and beautifying the website:
 		- color choosing for players
 		- mute button
 		- timer feature for each player turn (if timer runs out, automatic loss)
+		- mobile support
 	
 4. CHALLENGES/LESSONS LEARNED
 
