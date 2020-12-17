@@ -2,7 +2,7 @@
 
 ![alt text](tictactoeimg.png)
 
-## CLICK HERE TO PLAY: https://allisonbarnaud.github.io/Tic-Tac-Toe-Game/
+### CLICK HERE TO PLAY: https://allisonbarnaud.github.io/Tic-Tac-Toe-Game/
 
 1. HOW TO PLAY
 
